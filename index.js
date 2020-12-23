@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const KEY_NAME = 'counter';
 
 app.listen(PORT, () => {
-    Counter.checkCache('counter');
+    Counter.checkCache(KEY_NAME);
     console.log(`Server is running on port ${PORT}`)
 })
 
