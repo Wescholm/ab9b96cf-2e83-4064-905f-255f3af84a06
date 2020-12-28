@@ -15,16 +15,22 @@ class Counter {
         });
     }
 
-    static checkCache(key) {
-        client.exists(key, (err, isExist) => {
-            if (err) throw err;
-            if (!isExist) this._addKey(key, 0);
+    static async checkCache(key) {
+        return new Promise((resolve, reject) => {
+            client.exists(key, (err, isExist) => {
+                if (err) reject();
+                if (!isExist) {
+                    this._addKey(key, 0).then(_ => resolve());
+                } else {
+                    resolve();
+                }
+            })
         })
     }
 
-    static _addKey(key, value) {
-        client.set(key, value, (err) => {
-            if (err) throw err;
+    static async _addKey(key, value) {
+        return new Promise((resolve, reject) => {
+            client.set(key, value, (err) => err ? reject(err) : resolve());
         })
     }
 }

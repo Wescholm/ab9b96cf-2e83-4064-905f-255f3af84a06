@@ -2,14 +2,16 @@
   "name": "test-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "express-server/index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "express": "nodemon express-server/index.js",
+    "redis": "nodemon redis-server/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "amqplib": "^0.6.0",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "redis": "^3.0.2"
